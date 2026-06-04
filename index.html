@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grzegorz Wilczyński | Senior Research Engineer & PhD Student</title>
+    
+    <!-- Import Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Import Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; }
+        
+        /* Kontener na model 3D */
+        #splat-container {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            border-radius: 1rem;
+            overflow: hidden;
+            background: #1e293b;
+            position: relative;
+        }
+        
+        /* Subtelny gradient dla kafelków */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+
+    <!-- Import Map do rozwiązania zależności modułów w przeglądarce -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body class="antialiased selection:bg-blue-500 selection:text-white">
+
+    <main class="max-w-6xl mx-auto px-6 py-12">
+        
+        <!-- HERO SECTION -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 items-center">
+            
+            <div class="lg:col-span-4 h-full"> 
+                <div id="splat-container" class="shadow-2xl shadow-blue-900/20 cursor-grab active:cursor-grabbing w-full h-full min-h-[400px]">
+                </div>
+            </div>
+
+            <div class="lg:col-span-8 space-y-6 pl-0 lg:pl-8"> <h1 class="text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
+                <h1 class="text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400 pb-2">
+                    Grzegorz Wilczyński
+                </h1>
+                <!-- </h1> -->
+                <h2 class="text-2xl font-semibold text-slate-300">
+                    Senior Research Engineer @ IDEAS Research Institute <br>
+                    PhD Student @ Jagiellonian University
+                </h2>
+                <p class="text-lg text-slate-400 leading-relaxed">
+                    I bridge the gap between generative AI and 3D computer vision. Currently focusing on neural rendering, Gaussian Splatting, and structurally coherent 3D reconstruction from disjoint views. With 6+ years of industry experience, I build systems that are theoretically sound and production-ready.
+                </p>
+                
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="https://scholar.google.com/citations?user=cMUzSyUAAAAJ" target="_blank" rel="noopener noreferrer" class="px-6 py-2 rounded-full bg-blue-600 hover:bg-blue-500 font-semibold transition">Google Scholar</a>
+                    <a href="https://github.com/gwilczynski95" target="_blank" rel="noopener noreferrer" class="px-6 py-2 rounded-full glass-panel hover:bg-slate-700 font-semibold transition">GitHub</a>
+                    <a href="https://www.linkedin.com/in/gwilczynski95/" target="_blank" rel="noopener noreferrer" class="px-6 py-2 rounded-full glass-panel hover:bg-slate-700 font-semibold transition">LinkedIn</a>
+                    <a href="https://x.com/gwilczynski95" target="_blank" rel="noopener noreferrer" class="px-6 py-2 rounded-full glass-panel hover:bg-slate-700 font-semibold transition">X</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED RESEARCH SECTION -->
+        <section class="mb-16">
+            <h3 class="text-3xl font-bold mb-8 border-b border-slate-700 pb-4">Featured Research</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                
+                <div class="glass-panel rounded-2xl p-6 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/20">
+                    <div class="aspect-video bg-slate-800 rounded-lg mb-4 overflow-hidden relative">
+                        <video 
+                            src="static/iris.mp4" 
+                            autoplay 
+                            loop 
+                            muted 
+                            playsinline
+                            class="w-full h-full object-cover">
+                        </video>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">IRIS: Implicit Reconstruction in Space</h4>
+                    <p class="text-sm font-semibold text-yellow-400 mb-3">Under review ECCV 2026</p>
+                    <p class="text-slate-400 text-sm mb-4">A novel approach to implicit 3D scene representation, focusing on high-fidelity rendering and robust geometric priors for complex environments.</p>
+                    <div class="flex gap-3">
+                        <a href="https://gwilczynski95.github.io/iris/" target="_blank" rel="noopener noreferrer" class="text-sm bg-slate-700 hover:bg-slate-600 px-4 py-1.5 rounded-md transition">Project Page</a>
+                        <a href="https://arxiv.org/abs/2603.15368" target="_blank" rel="noopener noreferrer" class="text-sm bg-slate-700 hover:bg-slate-600 px-4 py-1.5 rounded-md transition">Paper</a>
+                        <a href="https://github.com/gwilczynski95/iris" target="_blank" rel="noopener noreferrer" class="text-sm bg-slate-700 hover:bg-slate-600 px-4 py-1.5 rounded-md transition">Code</a>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-2xl p-6 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/20">
+                    <div class="aspect-video bg-slate-800 rounded-lg mb-4 overflow-hidden relative">
+                        <!-- Dodane bg-white, p-[20px] oraz object-contain -->
+                        <img 
+                            src="static/quantumgs.png" 
+                            alt="QuantumGS visualization" 
+                            class="w-full h-full bg-white p-[10px] object-contain"
+                        >
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">QuantumGS: Quantum Encoding for 3DGS</h4>
+                    <p class="text-sm font-semibold text-emerald-400 mb-3">Accepted to PPSN 2026 (CORE A)</p>
+                    <p class="text-slate-400 text-sm mb-4">An innovative framework leveraging quantum encoding techniques to optimize the parameters and memory footprint of Gaussian Splatting representations.</p>
+                    <div class="flex gap-3">
+                        <a href="https://gwilczynski95.github.io/QuantumGS/" target="_blank" rel="noopener noreferrer" class="text-sm bg-slate-700 hover:bg-slate-600 px-4 py-1.5 rounded-md transition">Project Page</a>
+                        <a href="https://arxiv.org/abs/2602.05047" target="_blank" rel="noopener noreferrer" class="text-sm bg-slate-700 hover:bg-slate-600 px-4 py-1.5 rounded-md transition">Paper</a>
+                        <a href="https://github.com/gwilczynski95/QuantumGS" target="_blank" rel="noopener noreferrer" class="text-sm bg-slate-700 hover:bg-slate-600 px-4 py-1.5 rounded-md transition">Code</a>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-2xl p-6 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/20">
+                    <div class="aspect-video bg-slate-800 rounded-lg mb-4 overflow-hidden relative">
+                        <!-- Obrazek zajmujący 100% przestrzeni (bez paddingu) -->
+                        <img 
+                            src="static/mindthegap.jpg" 
+                            alt="MindTheGap visualization" 
+                            class="w-full h-full bg-white p-[10px] object-contain"
+                        >
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">MindTheGap: Disjoint Views Reconstruction</h4>
+                    <p class="text-sm font-semibold text-yellow-400 mb-3">Submitted to NeurIPS 2026</p>
+                    <p class="text-slate-400 text-sm mb-4">Bridging the spatial divide in 3D reconstruction by introducing generalized priors to synthesize novel views from strictly non-overlapping images.</p>
+                    <div class="flex gap-3">
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="text-sm bg-slate-700 hover:bg-slate-600 px-4 py-1.5 rounded-md transition">Project Page</a>
+                        <a href="https://arxiv.org/abs/2605.07550" target="_blank" rel="noopener noreferrer" class="text-sm bg-slate-700 hover:bg-slate-600 px-4 py-1.5 rounded-md transition">Paper</a>
+                        <a href="https://github.com/gwilczynski95/GLADOS" target="_blank" rel="noopener noreferrer" class="text-sm bg-slate-700 hover:bg-slate-600 px-4 py-1.5 rounded-md transition">Code</a>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-2xl p-6 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/20">
+                    <div class="aspect-video bg-slate-800 rounded-lg mb-4 overflow-hidden relative">
+                        <!-- Dodane bg-white, p-[10px] oraz object-contain -->
+                        <img 
+                            src="static/meshsplat.png" 
+                            alt="MeshSplats visualization" 
+                            class="w-full h-full bg-white p-[10px] object-contain"
+                        >
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">MeshSplats: Hybrid Surface Rendering</h4>
+                    <p class="text-sm font-semibold text-emerald-400 mb-3">Accepted to ICCS 2026</p>
+                    <p class="text-slate-400 text-sm mb-4">Combining the explicit geometric accuracy of traditional meshing with the photo-realistic, real-time rendering capabilities of Gaussian Splatting.</p>
+                    <div class="flex gap-3">
+                        <a href="https://arxiv.org/abs/2502.07754" target="_blank" rel="noopener noreferrer" class="text-sm bg-slate-700 hover:bg-slate-600 px-4 py-1.5 rounded-md transition">Paper</a>
+                        <a href="https://github.com/gwilczynski95/meshsplats" target="_blank" rel="noopener noreferrer" class="text-sm bg-slate-700 hover:bg-slate-600 px-4 py-1.5 rounded-md transition">Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="text-2xl font-bold mb-6 mt-12 text-slate-200">Other Publications</h4>
+            <div class="space-y-6">
+                <div class="border-l-2 border-blue-500 pl-4">
+                    <h5 class="text-lg font-bold text-slate-100">HuSc3D: Human and Scene 3D Co-reconstruction</h5>
+                    <p class="text-sm font-semibold text-emerald-400 mt-1">Accepted to ICCS 2026</p>
+                    <p class="text-slate-400 text-sm mt-1 mb-2">Simultaneous reconstruction of dynamic human subjects and static scenes from monocular video, maintaining robust spatial coherence.</p>
+                    <a href="https://arxiv.org/abs/2506.07628" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-blue-400 hover:text-blue-300">Read Paper &rarr;</a>
+                </div>
+
+                <div class="border-l-2 border-blue-500 pl-4">
+                    <h5 class="text-lg font-bold text-slate-100">REdiSplat: Real-time Editing of Gaussian Splats</h5>
+                    <p class="text-slate-400 text-sm mt-1 mb-2">A lightweight framework for semantic manipulation and geometry editing of pre-trained 3D Gaussian Splatting models.</p>
+                    <a href="https://arxiv.org/abs/2503.12284" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-blue-400 hover:text-blue-300">Read Paper &rarr;</a>
+                </div>
+
+                <div class="border-l-2 border-blue-500 pl-4">
+                    <h5 class="text-lg font-bold text-slate-100">Performance Comparison of Edge Computing Devices</h5>
+                    <p class="text-sm font-semibold text-emerald-400 mt-1">Accepted to JCSE 2023</p>
+                    <p class="text-slate-400 text-sm mt-1 mb-2">A comprehensive evaluation and benchmarking of various edge devices, focusing on their efficiency and suitability for deploying machine learning models.</p>
+                    <a href="https://arxiv.org/abs/2306.12093" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-blue-400 hover:text-blue-300">Read Paper &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h3 class="text-3xl font-bold mb-8 border-b border-slate-700 pb-4">Experience & Fellowships</h3>
+            <div class="space-y-8 border-l-2 border-slate-700 pl-6 ml-2">
+                
+                <div class="relative">
+                    <div class="absolute w-3 h-3 bg-blue-500 rounded-full -left-[1.85rem] top-1.5 shadow-[0_0_10px_rgba(59,130,246,0.8)]"></div>
+                    <h4 class="text-lg font-bold text-slate-200">Senior Research Engineer</h4>
+                    <p class="text-blue-400 text-sm mb-2">IDEAS Research Institute | Present</p>
+                    <p class="text-slate-400 text-sm">Focusing purely on core AI research, generative models, and advancing the state-of-the-art in 3D Computer Vision.</p>
+                </div>
+
+                <div class="relative">
+                    <div class="absolute w-3 h-3 bg-emerald-400 rounded-full -left-[1.85rem] top-1.5 shadow-[0_0_10px_rgba(52,211,153,0.8)]"></div>
+                    <h4 class="text-lg font-bold text-slate-200">Visiting Researcher</h4>
+                    <p class="text-emerald-400 text-sm mb-2">University of Cambridge | Cyber-Human Lab</p>
+                    <p class="text-slate-400 text-sm">One-month intensive research visit focused on human-computer interaction, spatial computing, and applied 3D rendering systems.</p>
+                </div>
+
+                <div class="relative">
+                    <div class="absolute w-3 h-3 bg-slate-500 rounded-full -left-[1.85rem] top-1.5"></div>
+                    <h4 class="text-lg font-bold text-slate-200">Machine Learning Engineer</h4>
+                    <p class="text-slate-400 text-sm mb-2">BulletProve & BFirst | 6 Years</p>
+                    <p class="text-slate-400 text-sm">Deployed production-grade systems in object detection, keyword spotting, and recommendation engines.</p>
+                    <div class="flex gap-2 mt-3">
+                        <span class="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded">PyTorch</span>
+                        <span class="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded">CUDA</span>
+                        <span class="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded">Python</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+<!-- Skrypt 3DGS z Auto-Orbit -->
+<script type="module">
+    // Importujemy popularny i wydajny silnik do obsługi .splat w przeglądarce
+    import * as GaussianSplats3D from 'https://cdn.jsdelivr.net/npm/@mkkellogg/gaussian-splats-3d@latest/build/gaussian-splats-3d.module.js';
+
+    const container = document.getElementById('splat-container');
+
+    // 1. Inicjalizacja Viewera
+    const viewer = new GaussianSplats3D.Viewer({
+        'rootElement': container,
+        'useBuiltInControls': true,
+        // Y = -0.05 lekko obniża model w kadrze, Z = 0.75 daje lepszy margines nad głową
+        'initialCameraPosition': [0.06, -0.05, 0.75], 
+        'initialCameraLookAt': [0.06, -0.05, 0],     
+        'cameraUp': [0, 1, 0],                
+        'sharedMemoryForWorkers': false
+    });
+
+    // 2. Ładowanie pliku .splat
+    viewer.addSplatScene('static/gin.splat', {
+        'progressiveLoad': false,
+        'rotation': [-0.7071, 0, 0, 0.7071]
+    }).then(() => {
+        viewer.start();
+
+        // 3. Logika Auto-Orbit (Ruch Eliptyczny)
+        let isAutoOrbiting = true;
+        
+        let angle = 0; 
+        const speed = 0.012;     
+        
+        // Rozdzielamy promień na dwie osie (Elipsa)
+        const radiusX = 0.18;    // Wyraźny ruch lewo-prawo
+        const radiusY = 0.03;    // Bardzo subtelny ruch góra-dół (prawie płasko)
+        
+        // Zapisana pozycja startowa
+        const baseX = 0;
+        const baseY = -0.05; 
+        const baseZ = 0.75;
+
+        const camera = viewer.camera;
+
+        // Funkcja obracająca kamerę
+        function orbitCamera() {
+            if (!isAutoOrbiting) return;
+
+            angle += speed;
+            
+            // Wychylenie po elipsie
+            camera.position.x = baseX + Math.cos(angle) * radiusX;
+            camera.position.y = baseY + Math.sin(angle) * radiusY;
+            
+            // Odległość zostaje stała
+            camera.position.z = baseZ;
+            
+            // Kamera cały czas patrzy w ten sam punkt
+            camera.lookAt(0, -0.05, 0); 
+            
+            requestAnimationFrame(orbitCamera);
+        }
+
+        // Uruchamiamy pętlę obrotu
+        requestAnimationFrame(orbitCamera);
+
+        // 4. Przerwanie auto-orbitowania przez użytkownika
+        const stopOrbit = () => {
+            isAutoOrbiting = false;
+            container.classList.remove('cursor-grab');
+            container.removeEventListener('mousedown', stopOrbit);
+            container.removeEventListener('touchstart', stopOrbit);
+            container.removeEventListener('wheel', stopOrbit);
+        };
+
+        // Nasłuchiwanie na interakcję
+        container.addEventListener('mousedown', stopOrbit);
+        container.addEventListener('touchstart', stopOrbit);
+        container.addEventListener('wheel', stopOrbit);
+    });
+</script>
+
+</body>
+</html>
