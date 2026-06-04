@@ -238,8 +238,12 @@
         'sharedMemoryForWorkers': false
     });
 
+    const currentUrl = new URL(window.location.href);
+    const basePath = currentUrl.pathname.endsWith('/') ? currentUrl.pathname : currentUrl.pathname + '/';
+    const splatUrl = currentUrl.origin + basePath + 'static/gin.splat';
+
     // 2. Ładowanie pliku .splat
-    viewer.addSplatScene('https://gwilczynski95.github.io/personal_page/static/gin.splat', {
+    viewer.addSplatScene(splatUrl, {
         'progressiveLoad': false,
         'rotation': [-0.7071, 0, 0, 0.7071]
     }).then(() => {
