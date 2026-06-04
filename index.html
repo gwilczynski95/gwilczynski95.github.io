@@ -238,12 +238,9 @@
         'sharedMemoryForWorkers': false
     });
 
-    const currentUrl = new URL(window.location.href);
-    const basePath = currentUrl.pathname.endsWith('/') ? currentUrl.pathname : currentUrl.pathname + '/';
-    const splatUrl = currentUrl.origin + basePath + 'static/gin.splat';
-
     // 2. Ładowanie pliku .splat
-    viewer.addSplatScene(splatUrl, {
+    viewer.addSplatScene("./static/gin.splat", {
+        'format': 'splat',
         'progressiveLoad': false,
         'rotation': [-0.7071, 0, 0, 0.7071]
     }).then(() => {
