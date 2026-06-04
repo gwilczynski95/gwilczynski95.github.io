@@ -223,7 +223,7 @@
 <!-- Skrypt 3DGS z Auto-Orbit -->
 <script type="module">
     // Importujemy popularny i wydajny silnik do obsługi .splat w przeglądarce
-    import * as GaussianSplats3D from 'https://cdn.jsdelivr.net/npm/@mkkellogg/gaussian-splats-3d@latest/build/gaussian-splats-3d.module.js';
+    import * as GaussianSplats3D from 'https://cdn.jsdelivr.net/npm/@mkkellogg/gaussian-splats-3d@0.3.1/build/gaussian-splats-3d.module.js';
 
     const container = document.getElementById('splat-container');
 
@@ -240,7 +240,6 @@
 
     // 2. Ładowanie pliku .splat
     viewer.addSplatScene("./static/gin.splat", {
-        'format': 'splat',
         'progressiveLoad': false,
         'rotation': [-0.7071, 0, 0, 0.7071]
     }).then(() => {
