@@ -44,6 +44,14 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
+        .flare-wordmark {
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 10;
+        }
     </style>
 
   <script type="importmap">
@@ -153,25 +161,32 @@
                 </div>
 
                 <div class="glass-panel rounded-2xl p-6 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/20">
-                    <div class="aspect-video bg-slate-800 rounded-lg mb-4 overflow-hidden relative">
-                        <img 
-                            src="static/meshsplat.png" 
-                            alt="MeshSplats visualization" 
-                            class="w-full h-full bg-white p-[10px] object-contain"
-                        >
+                    <div class="aspect-video bg-white rounded-lg mb-4 overflow-hidden relative">
+                        <canvas class="flare-wordmark" aria-label="Animated FlaRe wordmark"></canvas>
                     </div>
-                    <h4 class="text-xl font-bold mb-2">MeshSplats: Hybrid Surface Rendering</h4>
-                    <p class="text-sm font-semibold text-emerald-400 mb-3">Accepted to ICCS 2026</p>
-                    <p class="text-slate-400 text-sm mb-4">Combining the explicit geometric accuracy of traditional meshing with the photo-realistic, real-time rendering capabilities of Gaussian Splatting.</p>
+                    <h4 class="text-xl font-bold mb-2">FlaRe: Floating Radiance Networks</h4>
+                    <p class="text-sm font-semibold text-yellow-400 mb-3">Submitted to AAAI 2027</p>
+                    <p class="text-slate-400 text-sm mb-4">Combining explicit ray-traceable geometry with continuous local neural radiance functions for interactive rendering, editing, and recursive ray tracing.</p>
                     <div class="flex gap-3">
-                        <a href="https://arxiv.org/abs/2502.07754" target="_blank" rel="noopener noreferrer" class="text-sm bg-slate-700 hover:bg-slate-600 px-4 py-1.5 rounded-md transition">Paper</a>
-                        <a href="https://github.com/gwilczynski95/meshsplats" target="_blank" rel="noopener noreferrer" class="text-sm bg-slate-700 hover:bg-slate-600 px-4 py-1.5 rounded-md transition">Code</a>
+                        <a href="https://kbyrski.github.io/FlaRe/" target="_blank" rel="noopener noreferrer" class="text-sm bg-slate-700 hover:bg-slate-600 px-4 py-1.5 rounded-md transition">Project Page</a>
+                        <a href="https://arxiv.org/abs/2608.05920" target="_blank" rel="noopener noreferrer" class="text-sm bg-slate-700 hover:bg-slate-600 px-4 py-1.5 rounded-md transition">Paper</a>
+                        <a href="https://github.com/KByrski/FlaRe" target="_blank" rel="noopener noreferrer" class="text-sm bg-slate-700 hover:bg-slate-600 px-4 py-1.5 rounded-md transition">Code</a>
                     </div>
                 </div>
             </div>
 
             <h4 class="text-2xl font-bold mb-6 mt-12 text-slate-200">Other Publications</h4>
             <div class="space-y-6">
+                <div class="border-l-2 border-blue-500 pl-4">
+                    <h5 class="text-lg font-bold text-slate-100">MeshSplats: Mesh-Based Gaussian Splatting for Real-Time Large-Scale Rendering</h5>
+                    <p class="text-sm font-semibold text-emerald-400 mt-1">Accepted to ICCS 2026</p>
+                    <p class="text-slate-400 text-sm mt-1 mb-2">Combining the explicit geometric accuracy of traditional meshing with the photorealistic, real-time rendering capabilities of Gaussian Splatting.</p>
+                    <div class="flex gap-4">
+                        <a href="https://arxiv.org/abs/2502.07754" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-blue-400 hover:text-blue-300">Read Paper &rarr;</a>
+                        <a href="https://github.com/gwilczynski95/meshsplats" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-blue-400 hover:text-blue-300">View Code &rarr;</a>
+                    </div>
+                </div>
+
                 <div class="border-l-2 border-blue-500 pl-4">
                     <h5 class="text-lg font-bold text-slate-100">HuSc3D: Human and Scene 3D Co-reconstruction</h5>
                     <p class="text-sm font-semibold text-emerald-400 mt-1">Accepted to ICCS 2026</p>
@@ -228,6 +243,86 @@
         </section>
 
     </main>
+
+<script>
+    (() => {
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const canvas = document.querySelector('.flare-wordmark');
+        if (!canvas?.getContext) return;
+
+        const ctx = canvas.getContext('2d');
+        const colors = ['#1a73e8', '#4285f4', '#ea4335', '#fbbc04', '#34a853'];
+        let splats = [];
+        let width = 0;
+        let height = 0;
+        let animationFrame = 0;
+
+        function resize() {
+            if (animationFrame) cancelAnimationFrame(animationFrame);
+            const rect = canvas.getBoundingClientRect();
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            width = Math.max(1, rect.width);
+            height = Math.max(1, rect.height);
+            canvas.width = Math.round(width * dpr);
+            canvas.height = Math.round(height * dpr);
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+            const count = Math.round(Math.max(150, width / 3.5));
+            splats = Array.from({ length: count }, (_, i) => ({
+                x: width * (.07 + Math.random() * .86),
+                y: height * (.2 + Math.random() * .62),
+                rx: width * (.014 + Math.random() * .032),
+                ry: height * (.025 + Math.random() * .065),
+                angle: Math.random() * Math.PI,
+                phase: Math.random() * Math.PI * 2,
+                speed: .35 + Math.random() * .65,
+                color: colors[i % colors.length]
+            }));
+            draw(0);
+        }
+
+        function draw(ms) {
+            const t = ms / 1000;
+            ctx.clearRect(0, 0, width, height);
+            ctx.save();
+
+            const fontSize = Math.min(height * .8, width * .235);
+            ctx.font = `700 ${fontSize}px "Helvetica Neue", Arial, sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillStyle = 'rgba(26,115,232,.09)';
+            ctx.fillText('FlaRe', width / 2, height * .53);
+
+            splats.forEach((s, i) => {
+                const drift = reducedMotion ? 0 : Math.sin(t * s.speed + s.phase);
+                const x = s.x + drift * width * .012;
+                const y = s.y + Math.cos(t * s.speed * .8 + s.phase) * height * .035;
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.rotate(s.angle + (reducedMotion ? 0 : t * .08 * (i % 2 ? 1 : -1)));
+                const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, s.rx);
+                gradient.addColorStop(0, `${s.color}e8`);
+                gradient.addColorStop(.52, `${s.color}7a`);
+                gradient.addColorStop(1, `${s.color}00`);
+                ctx.scale(1, s.ry / s.rx);
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(0, 0, s.rx, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            });
+
+            ctx.globalCompositeOperation = 'destination-in';
+            ctx.fillStyle = '#000';
+            ctx.fillText('FlaRe', width / 2, height * .53);
+            ctx.restore();
+
+            if (!reducedMotion) animationFrame = requestAnimationFrame(draw);
+        }
+
+        new ResizeObserver(resize).observe(canvas);
+    })();
+</script>
 
 <script type="module">
     import * as GaussianSplats3D from 'https://cdn.jsdelivr.net/npm/@mkkellogg/gaussian-splats-3d@0.3.1/build/gaussian-splats-3d.module.js';
